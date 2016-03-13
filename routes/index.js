@@ -30,7 +30,7 @@ module.exports = function(app){
 	//app.post("/uploadDocument", require('./handlers/uploadFile'));
 
 
-	app.get('private/uploadForm', function(req, res, next){
+	app.get('/private/uploadForm', function(req, res, next){
 		res.sendFile(path.join(__dirname, "../index.html"));
 	})
 
