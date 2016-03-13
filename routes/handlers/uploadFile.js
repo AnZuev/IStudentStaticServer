@@ -34,7 +34,7 @@ module.exports = function(req, res, action, next){
 			}
 
 			file.on("end", function () {
-				var permanentFileName = FTIItem.getPermanentFolder(action) + Date.now() + "/" + tmpFile.name;
+				var permanentFileName = FTIItem.getPermanentFolder(action) + Date.now() + tmpFile.name;
 
 				var url = permanentFileName.split('/');
 				url.splice(0, 4);
