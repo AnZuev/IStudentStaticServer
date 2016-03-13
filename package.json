@@ -15,6 +15,7 @@
     "nconf": "*",
     "express-session": "*",
     "connect-mongo": "*",
-    "winston": "*"
+    "winston": "*",
+    "busboy": "*"
   }
 }
