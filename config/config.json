@@ -1,0 +1,33 @@
+{
+  "subDomain": "anzuev",
+  "publicKey": "/certificates/cert.crt",
+  "privateKey": "/certificates/cert.key",
+  "uploadCache":{
+    "ttl": 15,
+    "maxSize": 5000
+  },
+  "downloadCache":{
+    "ttl": 10,
+    "maxSize": 50000
+  },
+  "mongoose":{
+    "uri": "mongodb://localhost/test_IStudentAPI"
+  },
+  "storage":{
+    "tmpFolder": "/www/static/tmpFiles/",
+    "permanentFolder": "/www/privateStaticServer/privateFiles/"
+  },
+  "general":{
+      "host": "127.0.0.1:4000"
+  },
+  "session":{
+    "secret": "sdjknfskdjnvdfklnvdfjnvldjkfnv",
+    "key": "sid",
+    "cookie":{
+      "path": "/",
+      "maxAge":2592000000,
+      "httpOnly": true,
+      "domain":" istudentapp.ru"
+    }
+  }
+}

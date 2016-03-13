@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузка файлов. Тест</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+
+    function uploadFile(){
+        var form = document.forms.uploadForm;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        var path = "http://127.0.0.1:4000/uploadAvatar/";
+        xhr.open("POST", path, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if(xhr.status == 200) {
+                    var data = xhr.responseText;
+                    if(data == "true") {
+                       alert('done');
+                    } else {
+                        $(".sending").replaceWith("<p >Ошибка! Обновите страницу...<p>");
+                    }
+                }
+            }
+        };
+        xhr.send(formData);
+
+
+
+
+    }
+
+
+</script>
+<form name        =  "uploadForm"
+      enctype   =  "multipart/form-data",
+      onsubmit  = "uploadFile(); return false;"
+      method    =  "POST"
+>
+    <input type="file" name="blabla" id="userPhoto" />
+    <input type="submit" value="Upload Image" name="submit" >
+</form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "uploadAvatar":{
+     "maxSize": 3,
+     "allowTypes": ["image/jpeg", "image/jpg", "image/png","image/gif"],
+     "size":[
+       {
+         "height":100,
+         "width":100
+       }
+     ],
+    "permanentFilesStorage":"/www/static/public/avatars/"
+  },
+  "uploadPrivatePhoto":{
+    "maxSize": 3,
+    "allowTypes":["image/jpeg", "image/jpg", "image/png","image/gif"],
+    "size":[
+      {
+        "height":100,
+        "width":100
+      },
+      {
+        "height":200,
+        "width":200
+      }
+    ],
+    "permanentFilesStorage":"/www/static/private/im/photos"
+  },
+  "uploadPrivateDocument":{
+    "maxSize": 10,
+    "allowTypes":["application/pdf", "application/postscript","application/json", "image/jpeg", "image/jpg", "image/png","image/gif", "application/zip", "application/octet-stream"],
+    "permanentFilesStorage":"../www/im/documents"
+  },
+  "uploadPrivateBigArchive":{
+    "maxSize": 10,
+    "allowTypes":[""],
+    "permanentFilesStorage":"../www/im/else"
+  },
+  "uploadDocumentsToBZ":{
+    "maxSize": 10,
+    "allowTypes":["application/pdf", "application/postscript"],
+    "permanentFilesStorage":"../www/bz"
+  },
+  "default":{
+    "maxSize": 5,
+    "permanentFilesStorage":"../www/permanentFileStorage"
+  }
+}
