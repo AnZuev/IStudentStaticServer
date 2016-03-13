@@ -52,11 +52,11 @@ module.exports = function(req, res, action, next){
 				addFileToDbAndRename(options, function (err) {
 					if (err) {
 						var error = new fileValidationError(500, "Серверная ошибка");
-						next(error);
+						return next(error);
 					}
 					res.json({url: url, result: "done"});
+					next();
 				});
-				return next();
 			})
 
 		});
