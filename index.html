@@ -13,7 +13,7 @@
         var form = document.forms.uploadForm;
         var formData = new FormData(form);
         var xhr = new XMLHttpRequest();
-        var path = "http://127.0.0.1:4000/uploadAvatar/";
+        var path = "http://static.istudentapp.ru/private/uploadAvatar/";
         xhr.open("POST", path, true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
