@@ -1,7 +1,7 @@
 var config = require('../../config/index');
 var path = require('path');
 
-var Busboy = require('Busboy');
+var Busboy = require('busboy');
 var async = require('async');
 var domain = require('domain');
 
