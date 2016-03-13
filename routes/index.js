@@ -21,7 +21,7 @@ module.exports = function(app){
 
     //app.get('/file/:id', require(''));
 
-	app.post("/uploadAvatar", require('./handlers/uploadAvatar'));
+	app.post("/private/uploadAvatar", require('./handlers/uploadAvatar'));
 
 	//app.post("/uploadPrivatePhoto", require('./uploadPrivatePhoto'));
 
@@ -30,7 +30,7 @@ module.exports = function(app){
 	//app.post("/uploadDocument", require('./handlers/uploadFile'));
 
 
-	app.get('/uploadForm', function(req, res, next){
+	app.get('private/uploadForm', function(req, res, next){
 		res.sendFile(path.join(__dirname, "../index.html"));
 	})
 
