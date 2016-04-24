@@ -28,20 +28,21 @@
   "uploadPrivateDocument":{
     "maxSize": 10,
     "allowTypes":["application/pdf", "application/postscript","application/json", "image/jpeg", "image/jpg", "image/png","image/gif", "application/zip", "application/octet-stream"],
-    "permanentFilesStorage":"../www/im/documents"
+    "permanentFilesStorage":"/www/static/private/im/documents"
   },
   "uploadPrivateBigArchive":{
     "maxSize": 10,
     "allowTypes":[""],
-    "permanentFilesStorage":"../www/im/else"
+    "permanentFilesStorage":"/www/static/private/im/else"
+
   },
   "uploadDocumentsToBZ":{
     "maxSize": 10,
     "allowTypes":["application/pdf", "application/postscript"],
-    "permanentFilesStorage":"../www/bz"
+    "permanentFilesStorage":"/www/static/private/bz/documents/"
   },
   "default":{
     "maxSize": 5,
-    "permanentFilesStorage":"../www/permanentFileStorage"
+    "permanentFilesStorage":"/www/static/private/permanentStorage"
   }
 }

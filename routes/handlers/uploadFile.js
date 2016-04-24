@@ -54,7 +54,7 @@ module.exports = function(req, res, action, next){
 						var error = new fileValidationError(500, "Серверная ошибка");
 						return next(error);
 					}
-					res.json({url: url, result: "done"});
+					res.json({url: url, result: true});
 					next();
 				});
 			})
@@ -64,6 +64,7 @@ module.exports = function(req, res, action, next){
 	});
 
 	errHandler.on('error', function(err){
+		console.error(err);
 		return next(new fileValidationError(500, "Произошла ошибка файловой системы. Ошибка доступа"));
 	})
 
