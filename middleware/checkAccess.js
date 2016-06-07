@@ -8,10 +8,14 @@ var httpError = require('../error').HttpError;
 module.exports = function(req, res, next){
 	var errHandler = domain.createDomain();
 	errHandler.run(function(){
-		var query = req.query.url || "";
+		let id = req.params.id || "";
+		Q.async(function*(){
+			let file = yield file.getFileById(id);
+
+		})
 		async.waterfall([
 			function(callback){
-				file.getFilePathAndAccessByUrl(query, callback);
+				file.getFileById(query, callback);
 			},
 			function(file, callback){
 				if(!file) return callback(null, false);

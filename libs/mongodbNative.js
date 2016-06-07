@@ -1,7 +1,7 @@
 var mongoose = require('./mongoose');
 var config = require('../config');
-var MongoClient = require('mongodb').MongoClient
-    , assert = require('assert');
+var MongoClient = require('mongodb').MongoClient,
+	assert = require('assert');
 
 exports.dropCollection = function(collectionName, callback){
     MongoClient.connect(config.get('mongoose:uri'), function(err, db) {
@@ -11,4 +11,4 @@ exports.dropCollection = function(collectionName, callback){
             return callback(null, true);
         })
     });
-}
+};

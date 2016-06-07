@@ -1,14 +1,14 @@
 {
   "uploadAvatar":{
      "maxSize": 3,
-    "types": ["jpeg", "jpg", "png", "gif", "svg"],
+     "types": ["jpeg", "jpg", "png", "gif", "svg"],
      "size":[
        {
          "height":100,
          "width":100
        }
      ],
-    "permanentFilesStorage":"/www/static/public/avatars/"
+    "permanentFilesStorage":"/Users/anton/WebstormProjects/IStudentStaticServer/uploadsTest/public/avatars/"
   },
   "uploadPrivatePhoto":{
     "maxSize": 3,
@@ -36,7 +36,7 @@
     "permanentFilesStorage":"/www/static/private/im/else"
 
   },
-  "uploadDocumentsToBZ":{
+  "documentToBZ":{
     "maxSize": 10,
     "forbiddenTypes": ["exe", "com", "sh"],
     "permanentFilesStorage":"/www/static/private/bz/documents/"

@@ -16,6 +16,8 @@
     "express-session": "*",
     "connect-mongo": "*",
     "winston": "*",
-    "busboy": "*"
+    "busboy": "*",
+    "mongodb": "*",
+    "q": "*"
   }
 }

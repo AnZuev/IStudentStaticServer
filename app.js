@@ -2,8 +2,8 @@ var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var config = require('./config')
-
+var config = require('./config');
+var path = require('path');
 var fileValidationError = require('./error').fileValidationError;
 
 
@@ -27,9 +27,13 @@ app.use(session({
 	store: require('./libs/sessionsStore')
 }));
 
+global.appRoot = path.resolve(__dirname);
+
 app.use(require('./middleware/sendHttpError'));
 
+app.use('/private/upload', require('./routes/upload'));
 require('./routes')(app);
+
 
 
 

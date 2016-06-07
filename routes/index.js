@@ -5,10 +5,7 @@ var crypto = require('crypto');
 var fs = require('fs');
 
 var checkAuth = require('../middleware/checkAuth');
-var checkAccess = require('../middleware/checkAccess');
-//var publicKey= fs.readFileSync(path.join(__dirname , "../" ,config.get("publicKey")).toString('ascii'));
-//var privateKey= fs.readFileSync(path.join(__dirname , "../" ,config.get("privateKey")).toString('ascii'));
-
+//var checkAccess = require('../middleware/checkAccess');
 
 module.exports = function(app){
 
@@ -20,13 +17,8 @@ module.exports = function(app){
 	});
 
 
-    app.get('/files/', checkAuth, checkAccess, require('./handlers/sendFile'));
+    app.get('/files/:id', checkAuth, /*checkAccess*/ require('./handlers/sendFile'));
 
-	app.post("/private/uploadAvatar", checkAuth, require('./handlers/uploadAvatar'));
-
-	app.post("/private/uploadPrivatePhoto", checkAuth, require('./handlers/uploadPrivatePhoto'));
-
-	app.post("/private/uploadPrivateDocument", checkAuth, require('./handlers/uploadPrivateDocument'));
 
 	//app.post("/uploadDocument", require('./handlers/uploadFile'));
 
@@ -35,4 +27,4 @@ module.exports = function(app){
 	})
 
 
-}
+};
