@@ -1,37 +1,42 @@
+'use strict';
 
 var fs = require('fs');
-var domain = require('domain');
 
-var httpError = require('../../error').HttpError;
+var HttpError = require('@anzuev/studcloud.errors').HttpError;
+let File = require(appRoot + '/models/file'),
+	mongoose = require("mongoose"),
+	Q = require('q');
+let SSO = require("@anzuev/studcloud.sso");
 
 
-module.exports = function(req, res, next){
-	var errHandler = domain.createDomain();
-	errHandler.run(function(){
 
-		var fileStream = new fs.ReadStream(req.file.path);
+module.exports = function(req, res, next) {
+
+	Q.async(function*() {
+
+
+		let file;
+		try {
+			let id = mongoose.Types.ObjectId(req.params.id);
+			file = yield File.getById(id);
+			if(!(yield SSO.checkPermissionToGetFile(req.user, req.params.id))) return next(404);
+		} catch (err) {
+			return next(404);
+		}
+
+		var fileStream = new fs.ReadStream(file.path);
 		fileStream.pipe(res);
 
 		fileStream
-			.on('error', function(err){
-			console.error(err);
-			err = new httpError(500, err.toString());
-			return next(err);
-		});
+			.on('error', function (err) {
+				return next(new HttpError(404, "File not found", 404));
+			});
 
 
 		res
-			.on('close', function(){
-			fileStream.destroy();
-		});
+			.on('close', function () {
+				fileStream.destroy();
+			});
 
-
-	});
-
-	errHandler
-		.on('error', function(err){
-			console.error(err);
-			err = new httpError(500, "Серверная ошибка");
-			return next(err);
-		})
+	})().done();
 };

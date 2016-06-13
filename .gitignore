@@ -3,3 +3,6 @@
 node_modules/
 .*
 !/.gitignore
+/uploadsTest/
+
+uploadsTest/private/documents/14658465274900d36d229d99f04293cca63ec1a2be05a0be6339a.png

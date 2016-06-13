@@ -1,4 +1,4 @@
-var uploadFile = require('./uploadFile');
+var uploadFile = require('./../libs/uploadFile');
 
 
 module.exports = function(req, res, next){
