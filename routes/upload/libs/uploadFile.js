@@ -6,8 +6,6 @@ var config = require(appRoot + '/config/index'),
 	Busboy = require('busboy'),
 	domain = require('domain');
 
-
-
 var User = require(appRoot + '/models/User').User,
 	log = require(appRoot + '/libs/log');
 
@@ -15,29 +13,13 @@ var validateFile = require("./validateFile");
 var uploadFileToTempDirectory = require('./upload');
 var addFileToDbAndRename = require('./saveFile');
 
-
-var fileValidationError = require(appRoot + '/error/index').fileValidationError;
-
 var FileRules = require(appRoot + '/config/fileConfig/fileTypesInterface').FileRules;
-
 
 
 
 module.exports = function(req, res, action, accessItem, accessType, next){
 
-	var errHandler = domain.create();
-	errHandler.run(function(){
-		executor(req, res, action, accessItem, accessType, next);
-	});
 
-	errHandler.on('error', function(err){
-		console.error(err);
-		return next(new fileValidationError(500, "Произошла ошибка файловой системы. Ошибка доступа"));
-	})
-
-};
-
-function executor (req, res, action, accessItem, accessType, next) {
 	let busboy = new Busboy({headers: req.headers});
 
 	busboy.on('file', function (fieldName, file, fileName, encoding, mimeType) {
@@ -52,28 +34,30 @@ function executor (req, res, action, accessItem, accessType, next) {
 		file.on("end", function(){
 			Q.async(function*(){
 				let result;
-
-				if(accessType == 'public'){
-					result = yield* step3.publicAccess(tmpFile, fileName, action, req.session.user);
-				}else if(accessType == 'private'){
-					result = yield* step3.noPublicAccess(tmpFile, fileName, action, req.session.user, accessItem);
+				try{
+					if(accessType == 'public'){
+						result = yield* step3.publicAccess(tmpFile, fileName, action, req.session.user);
+					}else if(accessType == 'private'){
+						result = yield* step3.noPublicAccess(tmpFile, fileName, action, req.session.user, accessItem);
+					}
+					res.json({result: true, id: result._id});
 				}
-
-				console.log(result);
-				res.json({result: true, id: result._id});
-
-
+				catch(err){
+					return next(err);
+				}
 			})().done();
 		});
 	});
 	req.pipe(busboy);
-}
 
+
+};
 
 let step3 = {
 	publicAccess: publicAccess,
 	noPublicAccess: noPublicAccess
 };
+
 
 function* publicAccess(tmpFile, fileName, action, userId) {
 	var permanentFileName = FileRules.getPermanentFolder(action) + Date.now() + tmpFile.name;

@@ -8,6 +8,6 @@ let express = require('express'),
 
 router.post("/avatar", require('./handlers/avatar'));
 router.post("/photo", require('./handlers/photo'));
-router.post("/document", require('./handlers/documentToConversation'));
+router.post("/document", require('./handlers/document'));
 
 module.exports = router;

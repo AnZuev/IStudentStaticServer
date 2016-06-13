@@ -28,7 +28,7 @@
   "uploadPrivateDocument":{
     "maxSize": 10,
     "forbiddenTypes": ["exe", "com", "sh"],
-    "permanentFilesStorage":"/www/static/private/im/documents"
+    "permanentFilesStorage":"/Users/anton/WebstormProjects/IStudentStaticServer/uploadsTest/private/documents/"
   },
   "uploadPrivateBigArchive":{
     "maxSize": 10,
@@ -39,7 +39,7 @@
   "documentToBZ":{
     "maxSize": 10,
     "forbiddenTypes": ["exe", "com", "sh"],
-    "permanentFilesStorage":"/www/static/private/bz/documents/"
+    "permanentFilesStorage":"/Users/anton/WebstormProjects/IStudentStaticServer/uploadsTest/private/documents/"
   },
   "default":{
     "maxSize": 5,

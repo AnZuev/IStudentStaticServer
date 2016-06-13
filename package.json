@@ -1,23 +1,26 @@
 {
-  "name": "IStudentStaticServer",
+  "name": "@anzuev/studcloud.pss",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@anzuev/studcloud.datamodels": "^0.2.3",
+    "@anzuev/studcloud.errors": "^0.2.0",
+    "@anzuev/studcloud.sso": "^1.3.1",
     "body-parser": "~1.10.2",
+    "busboy": "*",
+    "connect-mongo": "*",
     "cookie-parser": "~1.3.3",
     "debug": "~2.1.1",
     "express": "~4.11.1",
-    "morgan": "~1.5.1",
-    "mongoose": "*",
-    "nconf": "*",
-    "express-session": "*",
-    "connect-mongo": "*",
-    "winston": "*",
-    "busboy": "*",
+    "jszip": "^3.0.0",
     "mongodb": "*",
-    "q": "*"
+    "mongoose": "*",
+    "morgan": "~1.5.1",
+    "nconf": "^0.8.4",
+    "q": "^1.4.1",
+    "winston": "^2.2.0"
   }
 }

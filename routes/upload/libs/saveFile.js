@@ -2,7 +2,7 @@
 
 let Fs = require('fs'),
 	Q = require('q');
-let Files = require(appRoot + '/models/file').file;
+let Files = require(appRoot + '/models/File');
 
 
 

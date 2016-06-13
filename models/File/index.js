@@ -1,43 +1,19 @@
 'use strict';
-var mongoose = require('../libs/mongoose'),
-    Schema = mongoose.Schema,
-	Q = require("q"),
-	Util = require('util');
 
-var DbError = require('../error').dbError;
-
-
-var file = new Schema({
-	url: String,
-	title: String,
-	uploader:{
-		type: Schema.Types.ObjectId
-	},
-    created:{
-        type: Date,
-        require:true,
-        default: Date.now()
-    },
-	path: String,
-	used:{
-		type: Boolean,
-		default: false
-	},
-	purpose:{
-
-	},
-	access:{
-		publicAccess: Boolean,
-		"type": String
-	}
-});
+let Q = require('q'),
+	Util = require('util'),
+	DbError = require("@anzuev/studcloud.errors").DbError,
+	AuthError = require("@anzuev/studcloud.errors").AuthError,
+	File = require("@anzuev/studcloud.datamodels").File,
+	connection = require(appRoot + '/libs/connections').PSS;
 
 
-
-file.statics.add = function(url, publicAccess, accessItem, path, title, uploader){
+File.statics.add = function(url, publicAccess, accessItem, path, title, uploader){
 	var file = new this({
 		uploader: uploader,
-		publicAccess: publicAccess,
+		access: {
+			publicAccess: publicAccess
+		},
 		title: title,
 		url: url,
 		path: path
@@ -46,14 +22,14 @@ file.statics.add = function(url, publicAccess, accessItem, path, title, uploader
 	if(!publicAccess) {
 		switch (accessItem.type){
 			case "conversation":
-				file.access.type = "conversation";
+				file.access.cType = "conversation";
 				file.access.value = accessItem.convId;
 				break;
 			case "group":
-				file.access.type = 'group';
+				file.access.cType = 'group';
 				break;
 			default:
-				file.publicAccess = true;
+				file.access.publicAccess = true;
 		}
 	}
 	let defer = Q.defer();
@@ -63,13 +39,13 @@ file.statics.add = function(url, publicAccess, accessItem, path, title, uploader
 		.then(function(file){
 			defer.resolve(file);
 		}).catch(function(err){
-			defer.reject(new DbError(err, 500, Util.format("Can't save file")));
+		defer.reject(new DbError(err, 500, Util.format("Can't save file")));
 	});
 	return defer.promise;
 
 };
 
-file.statics.getFileByUrl = function(url){
+File.statics.getFileByUrl = function(url){
 	let defer = Q.defer();
 	var promise = this.find(
 		{
@@ -89,10 +65,9 @@ file.statics.getFileByUrl = function(url){
 	return defer.promise;
 };
 
-file.statics.getFileById = function(id){
+File.statics.getFileById = function(id){
 	let deffer = Q.defer();
 	var promise = this.findById(id).exec();
-
 	promise.then(function(file){
 		if(file) deffer.fulfill(file);
 		else {
@@ -108,27 +83,24 @@ file.statics.getFileById = function(id){
 
 
 
-file.methods.formatWithPath = function(){
+File.methods.formatWithPath = function(){
 	return {
 		id: this._id,
 		uploader: this.uploader,
 		path: this.path,
-		access: this.access,
-		isPublic: this.isPublic
+		access: this.access
 	}
 };
 
-file.methods.formatWithoutPath = function(){
+File.methods.formatWithoutPath = function(){
 	return {
 		id: this._id,
 		uploader: this.uploader,
-		access: this.access,
-		isPublic: this.isPublic
+		access: this.access
 	}
 };
 
-
-file.statics.setFileUsedByUrl = function(url, use){
+File.statics.setFileUsedByUrl = function(url, use){
 	let defer = Q.defer();
 
 	this.getFileByUrl(url)
@@ -149,7 +121,6 @@ file.statics.setFileUsedByUrl = function(url, use){
 };
 
 
-module.exports.file = mongoose.model('file', file);
-
+module.exports = connection.model("File", File);
 
 
