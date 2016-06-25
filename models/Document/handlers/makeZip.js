@@ -1,10 +1,9 @@
 'use strict';
-let JSZip = require('JSZip'),
+let JSZip = require('jszip'),
 	Fs = require('fs'),
 	File = require('../../File'),
 	Q = require("q"),
-	HttpError = require('@anzuev/studcloud.errors').HttpError,
-	Path = require('path');
+	HttpError = require('@anzuev/studcloud.errors').HttpError;
 
 const zlib = require('zlib');
 

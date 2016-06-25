@@ -3,7 +3,7 @@
 var fs = require('fs');
 
 var HttpError = require('@anzuev/studcloud.errors').HttpError;
-let File = require(appRoot + '/models/file'),
+let File = require(appRoot + '/models/File'),
 	mongoose = require("mongoose"),
 	Q = require('q');
 let SSO = require("@anzuev/studcloud.sso");
@@ -31,7 +31,6 @@ module.exports = function(req, res, next) {
 			.on('error', function (err) {
 				return next(new HttpError(404, "File not found", 404));
 			});
-
 
 		res
 			.on('close', function () {

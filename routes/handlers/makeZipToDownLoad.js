@@ -5,11 +5,7 @@ let Document = require("../../models/Document"),
 	Q = require('q'),
 	Util = require('util');
 
-let JSZip = require('JSZip'),
-	Fs = require('fs'),
-	File = require('../../models/File'),
-	HttpError = require('@anzuev/studcloud.errors').HttpError;
-
+let File = require('../../models/File');
 
 module.exports = function(req, res, next){
 	Q.async(handler)(req, res, next).done();

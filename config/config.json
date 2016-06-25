@@ -5,7 +5,7 @@
     "SSOUri": "mongodb://127.0.0.1/test_sso"
   },
   "storage":{
-    "tmpFolder": "/Users/anton/WebstormProjects/IStudentStaticServer/uploadsTest/tmpFiles/",
+    "tmpFolder": "/www/static/tmpFolder",
     "permanentFolder": "/www/privateStaticServer/privateFiles/"
   },
   "general":{
@@ -18,7 +18,8 @@
       "cookie":{
         "path": "/",
         "maxAge":2592000000,
-        "httpOnly": true
+        "httpOnly": true,
+        "domain": "istudentapp.ru"
       }
     }
   }
