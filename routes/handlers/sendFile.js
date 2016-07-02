@@ -5,7 +5,8 @@ var fs = require('fs');
 var HttpError = require('@anzuev/studcloud.errors').HttpError;
 let File = require(appRoot + '/models/File'),
 	mongoose = require("mongoose"),
-	Q = require('q');
+	Q = require('q'),
+	eTag = require('etag');
 let SSO = require("@anzuev/studcloud.sso");
 
 
@@ -18,17 +19,20 @@ module.exports = function(req, res, next) {
 		let file;
 		try {
 			let id = mongoose.Types.ObjectId(req.params.id);
-			file = yield File.getById(id);
+			file = yield File.getFileById(id);
 			if(!(yield SSO.checkPermissionToGetFile(req.user, req.params.id))) return next(404);
 		} catch (err) {
+			console.error(err);
 			return next(404);
 		}
 
 		var fileStream = new fs.ReadStream(file.path);
+		res.setHeader('ETag', eTag(file.path));
 		fileStream.pipe(res);
 
 		fileStream
 			.on('error', function (err) {
+				console.log(err);
 				return next(new HttpError(404, "File not found", 404));
 			});
 

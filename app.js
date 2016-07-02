@@ -19,7 +19,7 @@ let app = express();
 SSO.init();
 
 
-app.set('etag', true);
+app.set('eTag', true);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
