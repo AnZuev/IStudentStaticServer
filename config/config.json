@@ -18,8 +18,7 @@
       "cookie":{
         "path": "/",
         "maxAge":2592000000,
-        "httpOnly": true,
-        "domain": "istudentapp.ru"
+        "httpOnly": true
       }
     }
   }
