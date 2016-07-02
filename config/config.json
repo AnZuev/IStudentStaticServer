@@ -2,7 +2,7 @@
   "mongoose":{
     "UsersUri": "mongodb://127.0.0.1/test_IStudentAPI",
     "PSSUri": "mongodb://127.0.0.1/test_IStudentAPI",
-    "SSOUri": "mongodb://127.0.0.1/test_sso"
+    "SSOUri": "mongodb://127.0.0.1/test_IStudentAPI"
   },
   "storage":{
     "tmpFolder": "/www/static/tmpFolder",
