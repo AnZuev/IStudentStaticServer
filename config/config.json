@@ -5,7 +5,7 @@
     "SSOUri": "mongodb://127.0.0.1/test_IStudentAPI"
   },
   "storage":{
-    "tmpFolder": "/www/static/tmpFolder",
+    "tmpFolder": "/www/static/tmpFiles/",
     "permanentFolder": "/www/privateStaticServer/privateFiles/"
   },
   "general":{

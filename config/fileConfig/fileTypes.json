@@ -8,7 +8,7 @@
          "width":100
        }
      ],
-    "permanentFilesStorage":"/www/static/public/avatars/"
+    "permanentFilesStorage":"/www/preprod/static/public/avatars/"
   },
   "uploadPrivatePhoto":{
     "maxSize": 3,
@@ -23,23 +23,23 @@
         "width":200
       }
     ],
-    "permanentFilesStorage":"/www/static/private/im/photos"
+    "permanentFilesStorage":"/www/preprod/static/private/im/photos/"
   },
   "uploadPrivateDocument":{
     "maxSize": 10,
     "forbiddenTypes": ["exe", "com", "sh"],
-    "permanentFilesStorage":"/www/static/private/im/documents"
+    "permanentFilesStorage":"/www/preprod/static/private/im/documents/"
   },
   "uploadPrivateBigArchive":{
     "maxSize": 10,
     "types":["zip", "7zip", "tar", "gz", "tar"],
-    "permanentFilesStorage":"/www/static/private/im/else"
+    "permanentFilesStorage":"/www/preprod/static/private/im/else/"
 
   },
   "uploadDocumentsToBZ":{
     "maxSize": 10,
     "forbiddenTypes": ["exe", "com", "sh"],
-    "permanentFilesStorage":"/www/static/private/bz/documents/"
+    "permanentFilesStorage":"/www/preprod/static/private/bz/documents/"
   },
   "default":{
     "maxSize": 5,
