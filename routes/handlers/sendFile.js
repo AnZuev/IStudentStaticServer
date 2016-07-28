@@ -14,7 +14,7 @@ let SSO = require("@anzuev/studcloud.sso");
 module.exports = function(req, res, next) {
 
 	Q.async(function*() {
-		
+
 		let file;
 		try {
 			let id = mongoose.Types.ObjectId(req.params.id);

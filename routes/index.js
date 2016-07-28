@@ -18,7 +18,7 @@ module.exports = function(app){
 	});
 
 
-    app.get('/private/files/:id', SSO.checkAuthMiddleware, require('./handlers/sendFile'));
+    app.get('/private/files/:id', function(req, res, next){ console.log(req.context); next();}, SSO.checkAuthMiddleware, require('./handlers/sendFile'));
 
 
 	app.get('/private/documents/download/:id/:title',  SSO.checkAuthMiddleware, require('./handlers/makeZipToDownLoad'));
